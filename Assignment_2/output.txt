@@ -1,0 +1,22 @@
+Coord:  (60,100), Dimen: (100,50,2), Area = 2550, Perim = 242, Leg = 70, Type = Shape\Trapezoid
+60, 100, 100, 50, 2, 2550, 242, 70, Shape\Trapezoid
+Coord:  (120,160), Dimen: (100,50,50), Area = 3750, Perim = 262, Leg = 56, Type = Shape\Trapezoid
+Coord:  (180,220), Dimen: (100,50,70), Area = 4250, Perim = 274, Leg = 52, Type = Shape\Trapezoid
+Coord:  (240,280), Dimen: (40,50,38), Area = 1950, Perim = 178, Leg = 50, Type = Shape\Trapezoid
+Coord:  (300,340), Dimen: (40,50,38), Area = 1950, Perim = 178, Leg = 50, Type = Shape\Trapezoid
+Coord:  (360,400), Dimen: (77,50,38), Area = 2875, Perim = 223, Leg = 54, Type = Shape\Trapezoid
+Coord:  (420,460), Dimen: (77,50,2), Area = 1975, Perim = 205, Leg = 63, Type = Shape\Trapezoid
+Coord:  (480,520), Dimen: (100,50,2), Area = 2550, Perim = 242, Leg = 70, Type = Shape\Trapezoid
+Coord:  (540,580), Dimen: (100,50,98), Area = 4950, Perim = 298, Leg = 50, Type = Shape\Trapezoid
+Coord:  (400,100), Dimen: (4,40,2), Area = 120, Perim = 86, Leg = 40, Type = Shape\Trapezoid
+Coord:  (460,160), Dimen: (100,40,2), Area = 2040, Perim = 228, Leg = 63, Type = Shape\Trapezoid
+Coord:  (520,220), Dimen: (100,40,98), Area = 3960, Perim = 278, Leg = 40, Type = Shape\Trapezoid
+Coord:  (580,160), Dimen: (50,40,48), Area = 1960, Perim = 178, Leg = 40, Type = Shape\Trapezoid
+Coord:  (500,100), Dimen: (4,2,2), Area = 6, Perim = 10, Leg = 2, Type = Shape\Trapezoid
+Coord:  (530,100), Dimen: (6,2,4), Area = 10, Perim = 14, Leg = 2, Type = Shape\Trapezoid
+Coord:  (100,40), Dimen: (10,10), Area = 79, Perim = 31, Type = Shape\Oval
+Coord:  (115,40), Dimen: (20,30), Area = 300, Perim = 84, Type = Shape\Triangle
+Coord:  (130,40), Dimen: (10,10), Area = 100, Perim = 40, Type = Shape\Rectangle\Square
+Coord:  (160,40), Dimen: (30,10), Area = 300, Perim = 80, Type = Shape\Rectangle
+Coord:  (190,40), Dimen: (30,10), Area = 150, Perim = 66, Type = Shape\Triangle
+Coord:  (260,40), Dimen: (100,40), Area = 2000, Perim = 228, Type = Shape\Triangle
