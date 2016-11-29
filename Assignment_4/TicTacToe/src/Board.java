@@ -1,4 +1,3 @@
-
 import java.util.Scanner;
 
 public class Board 
@@ -19,7 +18,7 @@ public class Board
         moveCount++;
         return true;
     }
-    boolean xturn() { return moveCount % 2 == 0;}  // X's turn always follows an even number of previous moves
+    public boolean xturn() { return moveCount % 2 == 0;}  // X's turn always follows an even number of previous moves
     boolean isFreeSquare(int square) { return squares[square] == freeChar; }
     void unDo(int square)
     {
@@ -62,8 +61,25 @@ public class Board
         for (int i = 0; i < wins.length; i++)
         {
             v = lineValue(wins[i][0], wins[i][1], wins[i][2], wins[i][3]);
-            if(v < num) num = v;
-            if(Math.abs(v) < num) num = v;
+           if(xturn())
+            {
+                //Find Biggest Value
+                if(v > num) num = v;
+                //If Enemey has Biggest Value (Block)
+                if(Math.abs(v) > num) num = v;
+
+            }
+            else
+            {
+                
+                if(v < num) num = v;
+                //Turn to negative
+                if(v > 0)
+                {
+                    if((v * -1) < num) num = v;
+                }
+                
+            }
         }
         v = num;
         num = 0;
@@ -97,7 +113,7 @@ public class Board
         moveToSquare(s);
         System.out.println("Human move: " + m);
         this.draw();
-        if (this.boardValue() == 3 || this.boardValue() == -3) return true; // a winning move
+        if (this.boardValue() == 3 || this.boardValue() == -3) return true;
         return false;
     }
     public boolean computerMove()
@@ -107,7 +123,7 @@ public class Board
         moveToSquare(m.square);
         System.out.println("\nComputer move: " + m);
         draw();
-        if (this.boardValue() == 3 || this.boardValue() == -3) return true; // a winning move
+        if (this.boardValue() == 3 || this.boardValue() == -3) return true;
         return false;
     }
 // get a random number from min to max inclusive
@@ -195,21 +211,19 @@ public class Board
         Board b = new Board();
         b.draw();
         if (Math.random() < 0.5) b.computerMove();
-        //b.computerMove();
-    // else  b.draw();  // human will move first
-    while (!b.boardFull())
-    {
-        if (b.userMove())
+        while (!b.boardFull())
         {
-            System.out.println("Congratulations! You win!");
-            break;
+            if (b.userMove())
+            {
+                System.out.println("Congratulations! You win!");
+                break;
+            }
+            if (!b.boardFull() && b.computerMove())
+            {
+                System.out.println("Computer wins this one.");
+                break;
+            }
         }
-        if (!b.boardFull() && b.computerMove())
-        {
-            System.out.println("Computer wins this one.");
-            break;
-        }
-    }
-    if (b.boardValue() == 0) System.out.println("Tie!");
+        if (b.boardValue() == 0) System.out.println("Tie!");
     }
 }
