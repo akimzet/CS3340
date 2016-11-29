@@ -29,9 +29,6 @@ public class Board
     boolean boardFull() { return moveCount == 25; }
     int lineValue(int s1, int s2, int s3, int s4)
     {
-//        if (squares[s1] == 'X' && squares[s2] == 'X' && squares[s3] == 'X' && squares[s4] == 'X') return 1;  // win for X
-//        if (squares[s1] == 'O' && squares[s2] == 'O' && squares[s3] == 'O' && squares[s4] == 'O') return -1; // win for O
-//        return 0;  // nobody has won yet
     if (squares[s1] == 'X' && squares[s2] == 'X' && squares[s3] == 'X' && squares[s4] == 'X') return 3;  // win  for X
     if (squares[s1] == 'O' && squares[s2] == 'O' && squares[s3] == 'O' && squares[s4] == 'O') return -3;
     if ((squares[s1] == freeChar && squares[s2] == 'X' && squares[s3] == 'X' && squares[s4] == 'X')
@@ -65,15 +62,8 @@ public class Board
         for (int i = 0; i < wins.length; i++)
         {
             v = lineValue(wins[i][0], wins[i][1], wins[i][2], wins[i][3]);
-            if(moveCount % 2 != 0)
-            {
-                if(v > num) num = v;            //O
-            }
-            else
-            {
-                if(v < num) num = v;            //X
-                
-            }
+            if(v < num) num = v;
+            if(Math.abs(v) < num) num = v;
         }
         v = num;
         num = 0;
@@ -103,7 +93,7 @@ public class Board
             legalMove = squares[s] == freeChar;
             if (!legalMove) System.out.println("Try again: ");
         }while (!legalMove);
-        Move m = new Move(s,evaluateMove(s));
+        Move m = new Move(s,evaluateMove(s, 0));
         moveToSquare(s);
         System.out.println("Human move: " + m);
         this.draw();
@@ -113,7 +103,7 @@ public class Board
     public boolean computerMove()
     {
         try {Thread.sleep(600);} catch (InterruptedException e) {}
-        Move m = this.bestMove();
+        Move m = this.bestMove(0);
         moveToSquare(m.square);
         System.out.println("\nComputer move: " + m);
         draw();
@@ -145,7 +135,7 @@ public class Board
      *  Provisionally make a move, then recursively evaluate your opponent's possible responses. 
      *  Your best move is the one that "minimizes" the value of your opponent's best response.
     */
-    public Move bestMove()
+    public Move bestMove(int depth)
     {
         Move bestSoFar = new Move();  // an impossibly "bad" move.
         int [] squares = new int[26];
@@ -155,29 +145,19 @@ public class Board
             int s = squares[i];
             if (isFreeSquare(s)) 
             {
-                Move m = new Move(squares[i],evaluateMove(s)); 
+                Move m = new Move(squares[i],evaluateMove(s, depth)); 
                 if (m.betterThan(bestSoFar))  bestSoFar = m;
             }
         }
         return bestSoFar;
     }
-    public int evaluateMove(int square)
+    public int evaluateMove(int square, int depth)
     {
         moveToSquare(square);
         int val = boardValue(); // if this is != 0 then it's a winning move
-        if(!boardFull())
-        {
-            //Priority
-            if(moveCount % 2 != 0)  //O
-            {
-                if(val < 0) val = bestMove().value;
-            }
-            else                    //X
-            {
-                if(val > 0) val = bestMove().value;
-            }
-        }
+        if(!boardFull() && val == 0 && depth < 3) val = bestMove(depth + 1).value;
         unDo(square);
+        //Returns the Provisional move value
         return val;
     /*
      * The numerical value of my move is equal to the value of opponent's best response. 
