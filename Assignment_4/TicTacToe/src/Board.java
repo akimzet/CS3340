@@ -1,3 +1,11 @@
+/*
+        Andrew Kim
+        Jazmin Onofre
+        Assignment 4
+        Intro Obj Orient Prog & Design
+*/
+
+
 import java.util.Scanner;
 
 public class Board 
@@ -5,7 +13,6 @@ public class Board
     static Scanner in = new Scanner(System.in);
     public char [] squares = new char[26]; // element zero not used
     int moveCount = 0;
-    int num = 0;
     static final char freeChar = '_';  // to indicate the square is available.
     public Board()
     {
@@ -28,62 +35,59 @@ public class Board
     boolean boardFull() { return moveCount == 25; }
     int lineValue(int s1, int s2, int s3, int s4)
     {
-    if (squares[s1] == 'X' && squares[s2] == 'X' && squares[s3] == 'X' && squares[s4] == 'X') return 3;  // win  for X
-    if (squares[s1] == 'O' && squares[s2] == 'O' && squares[s3] == 'O' && squares[s4] == 'O') return -3;
-    if ((squares[s1] == freeChar && squares[s2] == 'X' && squares[s3] == 'X' && squares[s4] == 'X')
-            || (squares[s1] == 'X' && squares[s2] == freeChar && squares[s3] == 'X' && squares[s4] == 'X')
-            || (squares[s1] == 'X' && squares[s2] == 'X' && squares[s3] == freeChar && squares[s4] == 'X')
-            || (squares[s1] == 'X' && squares[s2] == 'X' && squares[s3] == 'X' && squares[s4] == freeChar)) return 2;    //1 Away from Winning X
-    if((squares[s1] == freeChar && squares[s2] == freeChar && squares[s3] == 'X' && squares[s4] == 'X')
-            || (squares[s1] == freeChar && squares[s2] == 'X' && squares[s3] == freeChar && squares[s4] == 'X')
-            || (squares[s1] == freeChar && squares[s2] == 'X' && squares[s3] == 'X' && squares[s4] == freeChar)
-            || (squares[s1] == 'X' && squares[s2] == freeChar && squares[s3] == freeChar && squares[s4] == 'X')
-            || (squares[s1] == 'X' && squares[s2] == freeChar && squares[s3] == 'X' && squares[s4] == freeChar)
-            || (squares[s1] == 'X' && squares[s2] == 'X' && squares[s3] == freeChar && squares[s4] == freeChar)) return 1;    //2 Away from Winning X
-    if ((squares[s1] == freeChar && squares[s2] == 'O' && squares[s3] == 'O' && squares[s4] == 'O')
-            || (squares[s1] == 'O' && squares[s2] == freeChar && squares[s3] == 'O' && squares[s4] == 'O')
-            || (squares[s1] == 'O' && squares[s2] == 'O' && squares[s3] == freeChar && squares[s4] == 'O')
-            || (squares[s1] == 'O' && squares[s2] == 'O' && squares[s3] == 'O' && squares[s4] == freeChar)) return -2;    //1 Away from Winning O
-    if((squares[s1] == freeChar && squares[s2] == freeChar && squares[s3] == 'O' && squares[s4] == 'O')
-            || (squares[s1] == freeChar && squares[s2] == 'O' && squares[s3] == freeChar && squares[s4] == 'O')
-            || (squares[s1] == freeChar && squares[s2] == 'O' && squares[s3] == 'O' && squares[s4] == freeChar)
-            || (squares[s1] == 'O' && squares[s2] == freeChar && squares[s3] == freeChar && squares[s4] == 'O')
-            || (squares[s1] == 'O' && squares[s2] == freeChar && squares[s3] == 'O' && squares[s4] == freeChar)
-            || (squares[s1] == 'O' && squares[s2] == 'O' && squares[s3] == freeChar && squares[s4] == freeChar)) return -1;    //2 Away from Winning 0
-    return 0;
+        //Win For X
+        if (squares[s1] == 'X' && squares[s2] == 'X' && squares[s3] == 'X' && squares[s4] == 'X') return 4;
+        //1 Away from winning
+        if ((squares[s1] == freeChar && squares[s2] == 'X' && squares[s3] == 'X' && squares[s4] == 'X')
+                || (squares[s1] == 'X' && squares[s2] == freeChar && squares[s3] == 'X' && squares[s4] == 'X')
+                || (squares[s1] == 'X' && squares[s2] == 'X' && squares[s3] == freeChar && squares[s4] == 'X')
+                || (squares[s1] == 'X' && squares[s2] == 'X' && squares[s3] == 'X' && squares[s4] == freeChar)) return 3;
+        //2 Away from winning
+        if((squares[s1] == freeChar && squares[s2] == freeChar && squares[s3] == 'X' && squares[s4] == 'X')
+                || (squares[s1] == freeChar && squares[s2] == 'X' && squares[s3] == freeChar && squares[s4] == 'X')
+                || (squares[s1] == freeChar && squares[s2] == 'X' && squares[s3] == 'X' && squares[s4] == freeChar)
+                || (squares[s1] == 'X' && squares[s2] == freeChar && squares[s3] == freeChar && squares[s4] == 'X')
+                || (squares[s1] == 'X' && squares[s2] == freeChar && squares[s3] == 'X' && squares[s4] == freeChar)
+                || (squares[s1] == 'X' && squares[s2] == 'X' && squares[s3] == freeChar && squares[s4] == freeChar)) return 2;
+        //3 Away from winning
+        if((squares[s1] == 'X' && squares[s2] == freeChar && squares[s3] == freeChar && squares[s4] == freeChar)
+                || (squares[s1] == freeChar && squares[s2] == 'X' && squares[s3] == freeChar && squares[s4] == freeChar)
+                || (squares[s1] == freeChar && squares[s2] == freeChar && squares[s3] == 'X' && squares[s4] == freeChar)
+                || (squares[s1] == freeChar && squares[s2] == freeChar && squares[s3] == freeChar && squares[s4] == 'X')) return 1;
+        //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        //Win For O
+        if (squares[s1] == 'O' && squares[s2] == 'O' && squares[s3] == 'O' && squares[s4] == 'O') return -4;
+        //1 Away from winning
+        if ((squares[s1] == freeChar && squares[s2] == 'O' && squares[s3] == 'O' && squares[s4] == 'O')
+                || (squares[s1] == 'O' && squares[s2] == freeChar && squares[s3] == 'O' && squares[s4] == 'O')
+                || (squares[s1] == 'O' && squares[s2] == 'O' && squares[s3] == freeChar && squares[s4] == 'O')
+                || (squares[s1] == 'O' && squares[s2] == 'O' && squares[s3] == 'O' && squares[s4] == freeChar)) return -3;
+        //2 Away from winning
+        if((squares[s1] == freeChar && squares[s2] == freeChar && squares[s3] == 'O' && squares[s4] == 'O')
+                || (squares[s1] == freeChar && squares[s2] == 'O' && squares[s3] == freeChar && squares[s4] == 'O')
+                || (squares[s1] == freeChar && squares[s2] == 'O' && squares[s3] == 'O' && squares[s4] == freeChar)
+                || (squares[s1] == 'O' && squares[s2] == freeChar && squares[s3] == freeChar && squares[s4] == 'O')
+                || (squares[s1] == 'O' && squares[s2] == freeChar && squares[s3] == 'O' && squares[s4] == freeChar)
+                || (squares[s1] == 'O' && squares[s2] == 'O' && squares[s3] == freeChar && squares[s4] == freeChar)) return -2;
+        //3 Away from winning
+        if((squares[s1] == 'O' && squares[s2] == freeChar && squares[s3] == freeChar && squares[s4] == freeChar)
+                || (squares[s1] == freeChar && squares[s2] == 'O' && squares[s3] == freeChar && squares[s4] == freeChar)
+                || (squares[s1] == freeChar && squares[s2] == freeChar && squares[s3] == 'O' && squares[s4] == freeChar)
+                || (squares[s1] == freeChar && squares[s2] == freeChar && squares[s3] == freeChar && squares[s4] == 'O')) return -1;
+        return 0;
     }
     int boardValue()
     {
         int[][] wins = {{1,2,3,4},{2,3,4,5},{6,7,8,9},{7,8,9,10},{11,12,13,14},{12,13,14,15},{16,17,18,19},{17,18,19,20},{21,22,23,24},{22,23,24,25},
             {1,6,11,16},{6,11,16,21},{2,7,12,17},{7,12,17,22},{3,8,13,18},{8,13,18,23},{4,9,14,19},{9,14,19,24},{5,10,15,20},{10,15,20,25},
             {2,8,14,20},{6,12,18,24},{1,7,13,19},{7,13,19,25},{4,8,12,16},{10,14,18,22},{5,9,13,17},{9,13,17,21}};
-        int v;
         for (int i = 0; i < wins.length; i++)
         {
-            v = lineValue(wins[i][0], wins[i][1], wins[i][2], wins[i][3]);
-           if(xturn())
-            {
-                //Find Biggest Value
-                if(v > num) num = v;
-                //If Enemey has Biggest Value (Block)
-                if(Math.abs(v) > num) num = v;
-
-            }
-            else
-            {
-                
-                if(v < num) num = v;
-                //Turn to negative
-                if(v > 0)
-                {
-                    if((v * -1) < num) num = v;
-                }
-                
-            }
+            //Gets Value
+            int v = lineValue(wins[i][0], wins[i][1], wins[i][2], wins[i][3]);
+            if (v == 4 || v == -4) return v;
         }
-        v = num;
-        num = 0;
-        return v;
+        return 0;
     }
     // draw the board
     public void draw()
@@ -113,7 +117,7 @@ public class Board
         moveToSquare(s);
         System.out.println("Human move: " + m);
         this.draw();
-        if (this.boardValue() == 3 || this.boardValue() == -3) return true;
+        if (this.boardValue() == 4 || this.boardValue() == -4) return true;
         return false;
     }
     public boolean computerMove()
@@ -123,7 +127,7 @@ public class Board
         moveToSquare(m.square);
         System.out.println("\nComputer move: " + m);
         draw();
-        if (this.boardValue() == 3 || this.boardValue() == -3) return true;
+        if (this.boardValue() == 4 || this.boardValue() == -4) return true;
         return false;
     }
 // get a random number from min to max inclusive
@@ -196,7 +200,7 @@ public class Board
         }
         public Move()
         {
-            this(0, Board.this.xturn() ? -4 : 4);  // give this impossible move an impossibly bad value
+            this(0, Board.this.xturn() ? -5 : 5);  // give this impossible move an impossibly bad value
         }
         boolean betterThan(Move m)
         {

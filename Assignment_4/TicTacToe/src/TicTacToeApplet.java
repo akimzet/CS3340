@@ -27,13 +27,82 @@ public class TicTacToeApplet extends Applet implements ActionListener
         gameOver = false;
         board = new Board();
         SquareButton.clearLast();
-        if (Math.random() < 0.5) board.computerMove();
-        drawBoard();
+        //Get 1 ~ 4 for Board Setup
+        int setup = 1 + (int)(Math.random() * ((4 - 1) + 1));
+        //1             Clear Board
+        if(setup == 1)
+        {
+            if (Math.random() < 0.5) board.computerMove();
+            drawBoard();
+        }
+        //2             2 Moves
+        if(setup == 2)
+        {
+            if (Math.random() < 0.5)
+            {
+                //Computer First
+                board.computerMove();
+                board.computerMove();
+                board.computerMove();
+                drawBoard();
+            }
+            else
+            {
+                //User First
+                board.computerMove();
+                board.computerMove();
+                drawBoard();
+            }
+        }
+        //3             4 Moves
+        if(setup == 3)
+        {
+            if (Math.random() < 0.5)
+            {
+                //Computer First
+                board.computerMove();
+                board.computerMove();
+                board.computerMove();
+                board.computerMove();
+                drawBoard();
+            }
+            else
+            {
+                //User First
+                board.computerMove();
+                board.computerMove();
+                board.computerMove();
+                drawBoard();
+            }
+        }
+        //4             6 Moves
+        if(setup == 4)
+        {
+            if (Math.random() < 0.5)
+            {
+                //Computer First
+                board.computerMove();
+                board.computerMove();
+                board.computerMove();
+                board.computerMove();
+                board.computerMove();
+                drawBoard();
+            }
+            else
+            {
+                //User First
+                board.computerMove();
+                board.computerMove();
+                board.computerMove();
+                board.computerMove();
+                drawBoard();
+            }
+        }
     }
     public void endGame(boolean computerWin, boolean humanWin)
     {
         gameOver = true;
-        String message = (computerWin ? "You Win." : (humanWin ? "I Win." : "Tie Game.")) +
+        String message = (computerWin ? "I Win." : (humanWin ? "You Win." : "Tie Game.")) +
         " Play again?";
         if (JOptionPane.showOptionDialog(null, message, "",
                 JOptionPane.YES_NO_OPTION, 0, null, null, null) == JOptionPane.YES_OPTION)
@@ -62,7 +131,7 @@ public class TicTacToeApplet extends Applet implements ActionListener
     {
         board.moveToSquare(squareNum); // human move
         this.drawBoard();
-        if (board.boardValue() == 3 || board.boardValue() == -3) /* someone won */ 
+        if (board.boardValue() == 4 || board.boardValue() == -4) /* someone won */ 
         {
             endGame(!humanMove, humanMove);
             return true;  // game over
