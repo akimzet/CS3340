@@ -83,8 +83,8 @@ public class Board
             {2,8,14,20},{6,12,18,24},{1,7,13,19},{7,13,19,25},{4,8,12,16},{10,14,18,22},{5,9,13,17},{9,13,17,21}};
         for (int i = 0; i < wins.length; i++)
         {
-            //Gets Value
             int v = lineValue(wins[i][0], wins[i][1], wins[i][2], wins[i][3]);
+            //Get Highest and Lowest Value
             if (v == 4 || v == -4) return v;
         }
         return 0;
@@ -175,7 +175,8 @@ public class Board
     {
         moveToSquare(square);
         int val = boardValue(); // if this is != 0 then it's a winning move
-        if(!boardFull() && val == 0 && depth < 3) val = bestMove(depth + 1).value;
+        //if(!boardFull() && val == 0 && depth < 4) val = bestMove(depth + 1).value;
+        if(!boardFull() && (val != -4 || val != 4) && depth < 3) val = bestMove(depth + 1).value;
         unDo(square);
         //Returns the Provisional move value
         return val;

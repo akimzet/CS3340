@@ -28,7 +28,8 @@ public class TicTacToeApplet extends Applet implements ActionListener
         board = new Board();
         SquareButton.clearLast();
         //Get 1 ~ 4 for Board Setup
-        int setup = 1 + (int)(Math.random() * ((4 - 1) + 1));
+        //int setup = 1 + (int)(Math.random() * ((4 - 1) + 1));
+        int setup = 4;
         //1             Clear Board
         if(setup == 1)
         {
@@ -43,13 +44,11 @@ public class TicTacToeApplet extends Applet implements ActionListener
                 //Computer First
                 board.computerMove();
                 board.computerMove();
-                board.computerMove();
                 drawBoard();
             }
             else
             {
                 //User First
-                board.computerMove();
                 board.computerMove();
                 drawBoard();
             }
@@ -86,11 +85,13 @@ public class TicTacToeApplet extends Applet implements ActionListener
                 board.computerMove();
                 board.computerMove();
                 board.computerMove();
+                board.computerMove();
                 drawBoard();
             }
             else
             {
                 //User First
+                board.computerMove();
                 board.computerMove();
                 board.computerMove();
                 board.computerMove();
